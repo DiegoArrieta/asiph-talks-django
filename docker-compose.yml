@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  core_django:
+    build: .
+    container_name: core_django
+    volumes:
+      - ./app/:/usr/src/app/
+      - static_volume:/usr/src/app/staticfiles
+      - media_volume:/usr/src/app/mediafiles
+    ports:
+      - 8000:8000
+  core_nginx:
+    build: ./config/nginx
+    volumes:
+      - static_volume:/usr/src/app/staticfiles
+      - media_volume:/usr/src/app/mediafiles
+    ports:
+      - 80:80
+    depends_on:
+      - core_django
+  db:
+    image: postgres
+    container_name: db_001
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+volumes:
+  static_volume:
+  media_volume:
