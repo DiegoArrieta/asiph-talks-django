@@ -10,6 +10,10 @@ services:
       - media_volume:/usr/src/app/mediafiles
     ports:
       - 8000:8000
+    environment:
+      - DJANGO_SUPERUSER_PASSWORD=Talks.2021
+      - DJANGO_SUPERUSER_EMAIL=example@example.com
+      - DJANGO_SUPERUSER_USERNAME=admin
     depends_on:
       - db
   core_nginx:
