@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "Migrate Schemas"
-python manage.py migrate_schemas
+python manage.py migrate
 echo "Collect staticfiles"
 python manage.py collectstatic --no-input
 echo "Gunicorn"
