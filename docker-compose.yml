@@ -10,6 +10,8 @@ services:
       - media_volume:/usr/src/app/mediafiles
     ports:
       - 8000:8000
+    depends_on:
+      - db
   core_nginx:
     build: ./config/nginx
     volumes:
